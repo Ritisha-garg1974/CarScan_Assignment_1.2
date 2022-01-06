@@ -22,18 +22,6 @@ def damageIdentification(img_path,meta_data_json_path1,meta_data_json_path2):
     #converting json data into a dataframe for damaged_car_parts.
     jsondata2=data_damaged_part.json()
     df2=pd.DataFrame.from_dict(jsondata2)
-    
-    #Dropping not required coloumns in car_parts(df1)
-    df1.drop('id',axis=1,inplace=True)
-    df1.drop('to_name',axis=1,inplace=True)
-    df1.drop('from_name',axis=1,inplace=True)
-    df1.drop('image_rotation',axis=1,inplace=True)
-    
-    #Dropping not required coloumns in damaged_car_parts(df2)
-    df2.drop('id',axis=1,inplace=True)
-    df2.drop('to_name',axis=1,inplace=True)
-    df2.drop('from_name',axis=1,inplace=True)
-    df2.drop('image_rotation',axis=1,inplace=True)
         
     #function for denormalizing the points by formuala :-normalized_x=(x/image_width)*100, normalized_y=(y/image_height)*100
     def denormalize(pts,image_width,image_height):
