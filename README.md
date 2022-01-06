@@ -1,5 +1,5 @@
 
-# CarScan_Assignment_1.2
+# CarScan
 
 
 A brief description of what this project does and who it's for
