@@ -1,7 +1,0 @@
-VERSIONS:-
-system - 3.7.11
-openCv - 3.4.2
-numpy - 1.12.2
-pandas - 1.3.4
-matplotlib - 3.5.0
-requests - 2.26.0
