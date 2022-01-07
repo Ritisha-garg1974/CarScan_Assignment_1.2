@@ -6,6 +6,7 @@ A brief description of what this project does and who it's for
 
 
 ## Damage Identification
+### Task_1.2
 Here we  have to identify the following things:
 
 1) How many damages on the car-part.
@@ -38,5 +39,7 @@ Main Task:- Basically identify where are the damages and how percentage of damag
 - math
 - requests
 
-
+## Damage Classifier
+### Task_2.1
+Objectives :- We have to train a binary classifier to check if the car is damged or not.  DataSets used [https://www.kaggle.com/anujms/car-damage-detection](https://www.kaggle.com/anujms/car-damage-detection).
 
