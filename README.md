@@ -2,9 +2,6 @@
 # CarScan_Assignments
 
 
-A brief description of what this project does and who it's for
-
-
 ## Damage Identification
 ### Task_1.2
 Here we  have to identify the following things:
