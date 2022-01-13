@@ -31,10 +31,10 @@ def damageIdentification(img_path,meta_data_json_path1,meta_data_json_path2):
     
     #denormalizing the points for car_parts
     for i in range(0,len(df1)):
-    for key in df1['value'][i]:
-        if key=='points':
-            for j in range(len(df1['value'][i][key])):
-                df1['value'][i][key][j]=denormalize(df1['value'][i][key][j],df1['original_width'][i],df1['original_height'][i])
+        for key in df1['value'][i]:
+            if key=='points':
+                for j in range(len(df1['value'][i][key])):
+                    df1['value'][i][key][j]=denormalize(df1['value'][i][key][j],df1['original_width'][i],df1['original_height'][i])
 
     #Dividing the car_points inot 2 different arrays(pts,polygonlabel) correspondingly for simplicity.
     import math
@@ -51,10 +51,10 @@ def damageIdentification(img_path,meta_data_json_path1,meta_data_json_path2):
     
     #denormalizing the points for damaged_car_parts
     for i in range(0,len(df2)):
-    for key in df2['value'][i]:
-        if key=='points':
-            for j in range(len(df2['value'][i][key])):
-                df2['value'][i][key][j]=denormalize(df2['value'][i][key][j],df2['original_width'][i],df2['original_height'][i])
+        for key in df2['value'][i]:
+            if key=='points':
+                for j in range(len(df2['value'][i][key])):
+                    df2['value'][i][key][j]=denormalize(df2['value'][i][key][j],df2['original_width'][i],df2['original_height'][i])
     
     #Dividing the damaged_car_points inot 2 different arrays(pts,polygonlabel) correspondingly for simplicity.            
     import math
@@ -156,25 +156,7 @@ def damageIdentification(img_path,meta_data_json_path1,meta_data_json_path2):
             
         img=output2.copy()
     result.append(img)
-
-    #Creating Rectangle along with label over the corresponding polygons in car_parts
-    for i in range(len(df1)):
-        output=img.copy()
-        arr=np.array(pts[i])
-        out1=makeRectwithLabel(output,arr,polygonlabel[i])
-        img=out1.copy()
     
-    
-    #Creating Rectangle along with label over the corresponding polygons in damaged_car_parts
-    for i in range(len(df2)):
-        output2=img.copy()
-        arr2=np.array(pts2[i])
-        out2=makeRectwithLabel_damaged_parts(output2,arr2,polygonlabel2[i])
-        img=out2.copy()
-    result.append(img)
-    
-    return result
-
     #Function for creating rectangle with label over polygons in car_parts
     def makeRectwithLabel(img,pts,label):
         
@@ -325,8 +307,39 @@ def damageIdentification(img_path,meta_data_json_path1,meta_data_json_path2):
         final2=cv2.bitwise_or(img,out2)
         return final2
     
-    #######################################################################################
-                                ## CALCULATING AREA ##
+
+    #Creating Rectangle along with label over the corresponding polygons in car_parts
+    for i in range(len(df1)):
+        output=img.copy()
+        arr=np.array(pts[i])
+        out1=makeRectwithLabel(output,arr,polygonlabel[i])
+        img=out1.copy()
+    result.append(img)
+    
+    #Creating Rectangle along with label over the corresponding polygons in damaged_car_parts
+    for i in range(len(df2)):
+        output2=img.copy()
+        arr2=np.array(pts2[i])
+        out2=makeRectwithLabel_damaged_parts(output2,arr2,polygonlabel2[i])
+        img=out2.copy()
+    result.append(img)
+    
+    return result
+
+
+    ##### Function for calculating poygon's area 
+    def polygonArea(X, Y):
+        
+        n=len(X)
+        area = 0.0
+        j = n - 1
+        for i in range(0,n):
+            area += (X[j] + X[i]) * (Y[j] - Y[i])
+            j = i  
+        # Return absolute value
+        return int(abs(area / 2.0))  
+
+
     def calculate_area(pts,pts2):
         calculated_percentage_of_damage=[]                            
         # Extracting x_coordinates and y_coordinates from points in car_parts 
@@ -418,16 +431,6 @@ def damageIdentification(img_path,meta_data_json_path1,meta_data_json_path2):
         calculated_percentage_of_damage.append(percentage_of_car_part_damaged)
         return (calculated_percentage_of_damage)
 
-    ##### Function for calculating poygon's area 
-    def polygonArea(X, Y):
-        
-        n=len(X)
-        area = 0.0
-        j = n - 1
-        for i in range(0,n):
-            area += (X[j] + X[i]) * (Y[j] - Y[i])
-            j = i  
-        # Return absolute value
-        return int(abs(area / 2.0))  
+    
     
     

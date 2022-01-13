@@ -21,7 +21,7 @@ df2=pd.DataFrame.from_dict(jsondata2)
 pts=[[] for i in range(len(df1))]
 pts2=[[] for i in range(len(df2))]
 
-image_list=damageIdentification(img_path=img_path, meta_data_json_path1=meta_data_json_path1, meta_data_json_path2=meta_data_json2))
+image_list=damageIdentification(img_path=img_path, meta_data_json_path1=meta_data_json_path1, meta_data_json_path2=meta_data_json_path2)
 calculate_percentage_for_damaged_part=calculate_area(pts=pts,pts2=pts2)
 
 print(calculate_percentage_for_damaged_part)
